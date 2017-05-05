@@ -1,0 +1,16 @@
+<h1>
+  Patterns in Jazz Harmony
+</h1>
+<p>This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.</p>
+
+<h2>Most used Keys</h2>
+<ngx-charts-tree-map
+    [view]="small"
+    [scheme]="colorScheme"
+    [results]="keyStats"></ngx-charts-tree-map>
+
+<h2>Most used Accidentals</h2>
+<ngx-charts-tree-map
+    [view]="small"
+    [scheme]="colorScheme"
+    [results]="signatures"></ngx-charts-tree-map>
