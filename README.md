@@ -6,7 +6,7 @@ This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 ## Most used Styles
 ![Most used Styles](./src/assets/styles.png)
 ## Chord Diversity per Style
-![Most used Styles](./src/assets/chordDiversity.png)
+![Most used Styles](./src/assets/chordDiversity.gif)
 ## Most used Chords
 ![Most used Chords](./src/assets/chords.png)
 ## Most used Keys
