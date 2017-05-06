@@ -6,57 +6,31 @@ import { songs } from '../assets/songs';
   // styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  chords: any[];
   title = 'app works!';
-  data = [
-    {
-      'name': 'Germany',
-      'value': 8940000
-    },
-    {
-      'name': 'USA',
-      'value': 5000000
-    },
-    {
-      'name': 'France',
-      'value': 7200000
-    }
-  ];
   small: any[] = [1280, 768];
 
   colorScheme = {
     domain: ['#2E3346', '#839FBA', '#EDF5EE', '#985289', '#7B335E']
   };
-
-  keys = songs.songs.map((song) => {
-    return song.key;
-  });
-
   fourths = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'F#', 'B', 'E', 'A', 'D', 'G'];
 
   private keyStats: Array<any>;
   private signatures: Array<any>;
+  private times: Array<any>;
 
   constructor() {
     this.keyStats = this.getKeyStats();
     this.signatures = this.getSignatures(this.keyStats);
+    this.chords = this.getChords();
+    this.times = this.getTimeSignatures();
   }
 
   getKeyStats() {
-    const keys = [];
-    this.keys.forEach((key) => {
-      let k = keys.find(_key => _key.name === key);
-      if (!k) {
-        k = {
-          name: key,
-          value: 0
-        };
-        keys.push(k);
-      }
-      k.value += 1;
-      return keys;
+    const keys = songs.songs.map((song) => {
+      return song.key;
     });
-    keys.sort((a, b) => a.value > b.value ? -1 : 1);
-    return keys;
+    return this.countPrimitiveValues(keys);
   }
 
   getSignatures(keyStats) {
@@ -89,5 +63,42 @@ export class AppComponent {
       return a.value > b.value ? -1 : 1;
     });
     return signatures;
+  }
+
+  getTimeSignatures() {
+    const timeSignatures = songs.songs.map((song) => {
+      return song.music.timeSignature;
+    }); //TODO the data of time signatures is wrong (T44 everywhere)
+    return this.countPrimitiveValues(timeSignatures);
+  }
+
+  getChords() {
+    let chords = [];
+    songs.songs.forEach((song) => {
+      const songChords = song.music.measures.reduce((_chords, measure) => {
+        return _chords.concat(measure);
+      }, []);
+      chords = chords.concat(songChords);
+    });
+    return this.countPrimitiveValues(chords);
+  }
+
+  countPrimitiveValues(array) {
+    const values = [];
+    array.forEach((value) => {
+      let match = values.find(v => v.name === value);
+      if (!match) {
+        match = {
+          name: value,
+          value: 0
+        };
+        values.push(match);
+      }
+      match.value += 1;
+    });
+    values.sort((a, b) => {
+      return a.value > b.value ? -1 : 1;
+    });
+    return values;
   }
 }

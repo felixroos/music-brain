@@ -1,7 +1,17 @@
 # music-brain
 Analyses harmony and structure of songs.
 
+## Most used Chords
+![Most used Chords](./src/assets/chords.png)
+## Most used Keys
+![Most used Keys](./src/assets/keys.png)
+## Most used Accidentals
+![Most used Accidentals](./src/assets/accidentals.png)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+
+# Developer Info
 
 ## Development server
 
