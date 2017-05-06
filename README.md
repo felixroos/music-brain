@@ -3,14 +3,23 @@ This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 
 ## Top Jazz Composers
 ![Top Jazz Composers](./src/assets/composers.png)
+## Most used Styles
+![Most used Styles](./src/assets/styles.png)
 ## Most used Chords
 ![Most used Chords](./src/assets/chords.png)
 ## Most used Keys
 ![Most used Keys](./src/assets/keys.png)
 ## Most used Accidentals
 ![Most used Accidentals](./src/assets/accidentals.png)
-## Most used Styles
-![Most used Styles](./src/assets/styles.png)
+## Most common form lengths
+![Number of Measures](./src/assets/measures.png)
+## Chord Density
+Average Number of Chords per Measure:
+![Chord Density](./src/assets/density.png)
+## Chord Diversity
+Number of different Chords per Song:
+![Chord Density](./src/assets/diversity.png)
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.

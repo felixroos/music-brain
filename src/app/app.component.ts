@@ -9,7 +9,13 @@ export class AppComponent {
   chords: any[];
   title = 'app works!';
   small: any[] = [1280, 768];
-
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
+  autoScale = true;
   colorScheme = {
     domain: ['#2E3346', '#839FBA', '#EDF5EE', '#985289', '#7B335E']
   };
@@ -20,6 +26,9 @@ export class AppComponent {
   private times: Array<any>;
   private styles: Array<any>;
   private composers: Array<any>;
+  private lengths: Array<any>;
+  private densities: Array<any>;
+  private diversities: Array<any>;
 
   constructor() {
     this.keyStats = this.getKeyStats();
@@ -28,6 +37,15 @@ export class AppComponent {
     this.times = this.getTimeSignatures();
     this.styles = this.getStyles();
     this.composers = this.getComposers();
+    this.lengths = this.getLengths();
+    this.densities = [{
+      name: 'Chord Density',
+      series: this.getDensities()
+    }];
+    this.diversities = [{
+      name: 'Different Chords',
+      series: this.getDiversities()
+    }];
   }
 
   getKeyStats() {
@@ -76,13 +94,16 @@ export class AppComponent {
     return this.countPrimitiveValues(timeSignatures);
   }
 
+  flattenChords(song) {
+    return song.music.measures.reduce((_chords, measure) => {
+      return _chords.concat(measure);
+    }, []);
+  }
+
   getChords() {
     let chords = [];
     songs.songs.forEach((song) => {
-      const songChords = song.music.measures.reduce((_chords, measure) => {
-        return _chords.concat(measure);
-      }, []);
-      chords = chords.concat(songChords);
+      chords = chords.concat(this.flattenChords(song));
     });
     return this.countPrimitiveValues(chords);
   }
@@ -101,7 +122,30 @@ export class AppComponent {
     return this.countPrimitiveValues(styles);
   }
 
-  countPrimitiveValues(array) {
+  getLengths() {
+    const lengths = songs.songs.map((song) => {
+      return song.music.measures.length;
+    });
+    return this.countPrimitiveValues(lengths);
+  }
+
+  getDensities() {
+    //calculates chords/measure density of songs
+    const complexities = songs.songs.map((song) => {
+      return Math.round(this.flattenChords(song).length / song.music.measures.length * 10) / 10;
+    }).sort();
+    return this.countPrimitiveValues(complexities);
+  }
+
+  getDiversities() {
+    //calculates number of different chords per song
+    const diversities = songs.songs.map((song) => {
+      return this.countPrimitiveValues(this.flattenChords(song)).length;
+    }).sort();
+    return this.countPrimitiveValues(diversities);
+  }
+
+  countPrimitiveValues(array, flip: boolean = false) {
     const values = [];
     array.forEach((value) => {
       let match = values.find(v => v.name === value);
@@ -114,6 +158,11 @@ export class AppComponent {
       }
       match.value += 1;
     });
+    if (flip) {
+      values.map((value) => {
+        value.name = [value.value, value.name = value.value][0];
+      });
+    }
     values.sort((a, b) => {
       return a.value > b.value ? -1 : 1;
     });
