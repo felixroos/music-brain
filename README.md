@@ -1,6 +1,8 @@
 # Patterns in Jazz Harmony
 This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 
+## Top Jazz Composers
+![Top Jazz Composers](./src/assets/composers.png)
 ## Most used Chords
 ![Most used Chords](./src/assets/chords.png)
 ## Most used Keys
