@@ -39,38 +39,6 @@
     [scheme]="colorScheme"
     [results]="lengths"></ngx-charts-tree-map>
 <br>
-<h2>Average Chords per Measure</h2>
-<ngx-charts-line-chart
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="densities"
-    [autoScale]="autoScale"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="'Chords Density'"
-    [yAxisLabel]="'Number of Songs'">
-</ngx-charts-line-chart>
-<br><!--
-<h2>Chord Diversity</h2>
-<ngx-charts-line-chart
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="diversities"
-    [autoScale]="autoScale"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="'Number of Different Chords'"
-    [yAxisLabel]="'Number of Songs'">
-</ngx-charts-line-chart>
-<br>-->
 <h2>Chord Diversity per Style</h2>
 <ngx-charts-line-chart
     [view]="small"
@@ -84,5 +52,23 @@
     [showXAxisLabel]="showXAxisLabel"
     [showYAxisLabel]="showYAxisLabel"
     [xAxisLabel]="'Number of Different Chords'"
-    [yAxisLabel]="'Number of Songs'">
+    [yAxisLabel]="'Number of Songs'"
+    (select)="showSongs($event)">
+</ngx-charts-line-chart>
+<br>
+<h2>Chord Density per Style</h2>
+<ngx-charts-line-chart
+    [view]="small"
+    [scheme]="colorScheme"
+    [results]="styleDensities"
+    [autoScale]="autoScale"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="true"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="'Chords per Measure'"
+    [yAxisLabel]="'Number of Songs'"
+    (select)="showSongs($event)">
 </ngx-charts-line-chart>

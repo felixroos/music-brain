@@ -30,6 +30,7 @@ export class AppComponent {
   private densities: Array<any>;
   private diversities: Array<any>;
   private styleDiversities: Array<any>;
+  private styleDensities: Array<any>;
 
   constructor() {
     this.keyStats = this.getKeyStats();
@@ -39,15 +40,7 @@ export class AppComponent {
     this.styles = this.getStyles();
     this.composers = this.getComposers();
     this.lengths = this.getLengths();
-    this.densities = [{
-      name: 'Chord Density',
-      series: this.getDensities()
-    }];
-    this.diversities = [{
-      name: 'Different Chords',
-      series: this.getDiversities(songs.songs)
-    }];
-    this.styleDiversities = this.styles.map((style) => {
+    this.styleDiversities = this.getStyles().map((style) => {
       style.series = this.getDiversities(songs.songs.filter((song) => {
         return song.style === style.name;
       }));
@@ -57,6 +50,17 @@ export class AppComponent {
       name: 'All Styles',
       series: this.getDiversities(songs.songs)
     });
+    this.styleDensities = this.getStyles().map((style) => {
+      style.series = this.getDensities(songs.songs.filter((song) => {
+        return song.style === style.name;
+      }));
+      //TODO min max
+      return style;
+    });
+    this.styleDensities.unshift({
+      name: 'All Styles',
+      series: this.getDensities(songs.songs)
+    });
   }
 
   getKeyStats() {
@@ -64,6 +68,10 @@ export class AppComponent {
       return song.key;
     });
     return this.countPrimitiveValues(keys);
+  }
+
+  showSongs(value) {
+    console.log('show songs', value);
   }
 
   getSignatures(keyStats) {
@@ -140,9 +148,9 @@ export class AppComponent {
     return this.countPrimitiveValues(lengths);
   }
 
-  getDensities() {
+  getDensities(songs) {
     //calculates chords/measure density of songs
-    const complexities = songs.songs.map((song) => {
+    const complexities = songs.map((song) => {
       return Math.round(this.flattenChords(song).length / song.music.measures.length * 10) / 10;
     }).sort();
     return this.countPrimitiveValues(complexities);

@@ -6,18 +6,19 @@ This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 ## Most used Styles
 ![Most used Styles](./src/assets/styles.png)
 ## Chord Diversity per Style
+Number of Different Chords per Song
 ![Most used Styles](./src/assets/chordDiversity.gif)
-## Most used Chords
+## Most common Chords
 ![Most used Chords](./src/assets/chords.png)
-## Most used Keys
+## Most common Keys
 ![Most used Keys](./src/assets/keys.png)
-## Most used Accidentals
+## Most common Accidentals
 ![Most used Accidentals](./src/assets/accidentals.png)
 ## Most common form lengths
 ![Number of Measures](./src/assets/measures.png)
-## Chord Density
+## Chord Density per Style
 Average Number of Chords per Measure:
-![Chord Density](./src/assets/density.png)
+![Chord Density](./src/assets/chordDensity.gif)
 
 
 
