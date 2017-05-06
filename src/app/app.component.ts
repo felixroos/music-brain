@@ -18,12 +18,14 @@ export class AppComponent {
   private keyStats: Array<any>;
   private signatures: Array<any>;
   private times: Array<any>;
+  private styles: Array<any>;
 
   constructor() {
     this.keyStats = this.getKeyStats();
     this.signatures = this.getSignatures(this.keyStats);
     this.chords = this.getChords();
     this.times = this.getTimeSignatures();
+    this.styles = this.getStyles();
   }
 
   getKeyStats() {
@@ -81,6 +83,13 @@ export class AppComponent {
       chords = chords.concat(songChords);
     });
     return this.countPrimitiveValues(chords);
+  }
+
+  getStyles() {
+    const styles = songs.songs.map((song) => {
+      return song.style;
+    });
+    return this.countPrimitiveValues(styles);
   }
 
   countPrimitiveValues(array) {

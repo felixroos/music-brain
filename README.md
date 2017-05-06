@@ -1,5 +1,5 @@
-# music-brain
-Analyses harmony and structure of songs.
+# Patterns in Jazz Harmony
+This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 
 ## Most used Chords
 ![Most used Chords](./src/assets/chords.png)
@@ -7,6 +7,8 @@ Analyses harmony and structure of songs.
 ![Most used Keys](./src/assets/keys.png)
 ## Most used Accidentals
 ![Most used Accidentals](./src/assets/accidentals.png)
+## Most used Styles
+![Most used Styles](./src/assets/styles.png)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
