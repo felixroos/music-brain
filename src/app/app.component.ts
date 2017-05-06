@@ -17,7 +17,7 @@ export class AppComponent {
   showYAxisLabel = true;
   autoScale = true;
   colorScheme = {
-    domain: ['#2E3346', '#839FBA', '#EDF5EE', '#985289', '#7B335E']
+    domain: ['#2E3346', '#839FBA', '#985289', '#7B335E', '#4D7D8F', '#325326', '#08143B', '#223E42']
   };
   fourths = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'F#', 'B', 'E', 'A', 'D', 'G'];
 
@@ -29,6 +29,7 @@ export class AppComponent {
   private lengths: Array<any>;
   private densities: Array<any>;
   private diversities: Array<any>;
+  private styleDiversities: Array<any>;
 
   constructor() {
     this.keyStats = this.getKeyStats();
@@ -44,8 +45,18 @@ export class AppComponent {
     }];
     this.diversities = [{
       name: 'Different Chords',
-      series: this.getDiversities()
+      series: this.getDiversities(songs.songs)
     }];
+    this.styleDiversities = this.styles.map((style) => {
+      style.series = this.getDiversities(songs.songs.filter((song) => {
+        return song.style === style.name;
+      }));
+      return style;
+    });
+    this.styleDiversities.unshift({
+      name: 'All Styles',
+      series: this.getDiversities(songs.songs)
+    });
   }
 
   getKeyStats() {
@@ -137,9 +148,9 @@ export class AppComponent {
     return this.countPrimitiveValues(complexities);
   }
 
-  getDiversities() {
+  getDiversities(songs) {
     //calculates number of different chords per song
-    const diversities = songs.songs.map((song) => {
+    const diversities = songs.map((song) => {
       return this.countPrimitiveValues(this.flattenChords(song)).length;
     }).sort();
     return this.countPrimitiveValues(diversities);

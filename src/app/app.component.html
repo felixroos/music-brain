@@ -54,7 +54,7 @@
     [xAxisLabel]="'Chords Density'"
     [yAxisLabel]="'Number of Songs'">
 </ngx-charts-line-chart>
-<br>
+<br><!--
 <h2>Chord Diversity</h2>
 <ngx-charts-line-chart
     [view]="small"
@@ -65,6 +65,22 @@
     [xAxis]="showXAxis"
     [yAxis]="showYAxis"
     [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="'Number of Different Chords'"
+    [yAxisLabel]="'Number of Songs'">
+</ngx-charts-line-chart>
+<br>-->
+<h2>Chord Diversity per Style</h2>
+<ngx-charts-line-chart
+    [view]="small"
+    [scheme]="colorScheme"
+    [results]="styleDiversities"
+    [autoScale]="autoScale"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="true"
     [showXAxisLabel]="showXAxisLabel"
     [showYAxisLabel]="showYAxisLabel"
     [xAxisLabel]="'Number of Different Chords'"
