@@ -19,6 +19,7 @@ Number of Different Chords per Song
 ## Chord Density per Style
 Average Number of Chords per Measure:
 ![Chord Density](./src/assets/chordDensity.gif)
+![Chord Density](./src/assets/styleDensitiesNormalized.png)
 
 
 

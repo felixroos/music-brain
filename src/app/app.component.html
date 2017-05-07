@@ -3,72 +3,123 @@
 </h1>
 <p>This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.</p>
 
-<h2>Most used Keys</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="keyStats"></ngx-charts-tree-map>
-<br>
-<h2>Most used Accidentals</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="signatures"></ngx-charts-tree-map>
-<br>
-<h2>Most used Chords</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="chords"></ngx-charts-tree-map>
-<br>
-<h2>Most used Styles</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="styles"></ngx-charts-tree-map>
-<br>
-<h2>Most Compositions</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="composers"></ngx-charts-tree-map>
-<br>
-<h2>Number of Measures</h2>
-<ngx-charts-tree-map
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="lengths"></ngx-charts-tree-map>
-<br>
-<h2>Chord Diversity per Style</h2>
-<ngx-charts-line-chart
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="styleDiversities"
-    [autoScale]="autoScale"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="true"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="'Number of Different Chords'"
-    [yAxisLabel]="'Number of Songs'"
-    (select)="showSongs($event)">
-</ngx-charts-line-chart>
-<br>
-<h2>Chord Density per Style</h2>
-<ngx-charts-line-chart
-    [view]="small"
-    [scheme]="colorScheme"
-    [results]="styleDensities"
-    [autoScale]="autoScale"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="true"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="'Chords per Measure'"
-    [yAxisLabel]="'Number of Songs'"
-    (select)="showSongs($event)">
-</ngx-charts-line-chart>
+<div data-row>
+  <div data-col>
+    <h2>Most used Keys</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="keyStats"></ngx-charts-tree-map>
+
+  </div>
+  <div data-col>
+    <h2>Most used Accidentals</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="signatures"></ngx-charts-tree-map>
+
+  </div>
+  <div data-col>
+    <h2>Most used Chords</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="chords"></ngx-charts-tree-map>
+
+  </div>
+  <div data-col>
+    <h2>Most used Styles</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="styles"></ngx-charts-tree-map>
+
+  </div>
+  <div data-col>
+    <h2>Most Compositions</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="composers"></ngx-charts-tree-map>
+
+  </div>
+  <div data-col>
+    <h2>Number of Measures</h2>
+    <ngx-charts-tree-map
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="lengths"></ngx-charts-tree-map>
+  </div>
+  <div data-col>
+    <h2>Chord Diversity per Style</h2>
+    <ngx-charts-line-chart
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="styleDiversities"
+        [autoScale]="autoScale"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="true"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="'Number of Different Chords'"
+        [yAxisLabel]="'Number of Songs'"
+        (select)="showSongs($event)">
+    </ngx-charts-line-chart>
+  </div>
+  <div data-col>
+
+    <h2>Chord Density per Style</h2>
+    <ngx-charts-line-chart
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="styleDensities"
+        [autoScale]="autoScale"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="true"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="'Chords per Measure'"
+        [yAxisLabel]="'Number of Songs'"
+        (select)="showSongs($event)">
+    </ngx-charts-line-chart>
+  </div>
+  <div data-col>
+    <h2>Chord Diversity per Style</h2>
+    <ngx-charts-area-chart-normalized
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="styleDiversities"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="true"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="'Number of Different Chords'"
+        [yAxisLabel]="'Number of Songs'"
+        (select)="showSongs($event)">
+    </ngx-charts-area-chart-normalized>
+  </div>
+  <div data-col>
+    <h2>Chord Density per Style</h2>
+    <ngx-charts-area-chart-normalized
+        [view]="small"
+        [scheme]="colorScheme"
+        [results]="styleDensities"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="true"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="'Chords per Measure'"
+        [yAxisLabel]="'Number of Songs'"
+        (select)="showSongs($event)">
+    </ngx-charts-area-chart-normalized>
+  </div>
+</div>

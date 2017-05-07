@@ -3,7 +3,7 @@ import { songs } from '../assets/songs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   chords: any[];
@@ -45,22 +45,22 @@ export class AppComponent {
         return song.style === style.name;
       }));
       return style;
-    });
+    });/*
     this.styleDiversities.unshift({
       name: 'All Styles',
       series: this.getDiversities(songs.songs)
-    });
+    });*/
     this.styleDensities = this.getStyles().map((style) => {
       style.series = this.getDensities(songs.songs.filter((song) => {
         return song.style === style.name;
       }));
       //TODO min max
       return style;
-    });
+    });/*
     this.styleDensities.unshift({
       name: 'All Styles',
       series: this.getDensities(songs.songs)
-    });
+    });*/
   }
 
   getKeyStats() {
