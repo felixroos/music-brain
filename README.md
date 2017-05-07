@@ -1,31 +1,38 @@
 # Patterns in Jazz Harmony
 This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.
 
+# Screenshots
+Here are screenshots of most of the graphs.
 ## Top Jazz Composers
+By number composed songs
 ![Top Jazz Composers](./src/assets/composers.png)
 ## Most used Styles
+By number of songs
 ![Most used Styles](./src/assets/styles.png)
 ## Chord Diversity per Style
-Number of Different Chords per Song
+Number of different chords per song
 ![Most used Styles](./src/assets/chordDiversity.gif)
 ## Most common Chords
+By number of occurence in all songs
 ![Most used Chords](./src/assets/chords.png)
 ## Most common Keys
+By number of occurence in all songs
 ![Most used Keys](./src/assets/keys.png)
 ## Most common Accidentals
+By number of occurence in all songs
 ![Most used Accidentals](./src/assets/accidentals.png)
 ## Most common form lengths
+By number of occurence in all songs
 ![Number of Measures](./src/assets/measures.png)
 ## Chord Density per Style
-Average Number of Chords per Measure:
+Average number of chords per measure:
 ![Chord Density](./src/assets/chordDensity.gif)
+Normalized (in relation)
 ![Chord Density](./src/assets/styleDensitiesNormalized.png)
 
-
+# Developer Info
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
-
-# Developer Info
 
 ## Development server
 
