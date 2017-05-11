@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { List } from '@ec.components/core';
 import { songs } from '../assets/songs';
 @Component({
   selector: 'app-root',
@@ -32,6 +33,68 @@ export class AppComponent {
   private styleDiversities: Array<any>;
   private styleDensities: Array<any>;
 
+  private songs = new List(songs.songs, {
+    size: 10,
+    fields: {
+      title: {
+        label: 'Titel',
+      },
+      composer: {
+        label: 'Komponist'
+      },
+      style: {
+        label: 'Stil',
+        group: (value) => value/*,
+        hidden: true*/
+      },
+      key: {
+        label: 'Tonart',
+        group: (value) => value[0].toUpperCase()
+      },
+      density: {
+        label: 'Dichte',
+        hidden: true,
+        resolve: (body) => {
+          return Math.round(body.music.measures.reduce((chords, measure) => chords.concat(measure), []).length / body.music.measures.length * 10) / 10;
+        }
+      },
+      diversity: {
+        label: 'Diversität',
+        hidden: true,
+        resolve: (body) => {
+          return body.music.measures.reduce((chords, measure) => chords.concat(measure), []).filter((v, i, a) => a.indexOf(v) === i).length;
+        }
+      },
+      difficulty: {
+        label: 'Schwierigkeit',
+        resolve: (body, item) => {
+          return Math.round(item.resolve('diversity') * item.resolve('density'));
+        },
+        group: (value) => {
+          if (value < 5) {
+            return 'Käseleicht'
+          }
+          if (value < 10) {
+            return 'Anfänger'
+          }
+          if (value < 30) {
+            return 'Ganz nett'
+          }
+          if (value < 40) {
+            return 'Fortgeschritten'
+          }
+          if (value < 50) {
+            return 'Ordentlich'
+          }
+          if (value < 60) {
+            return 'Profi'
+          }
+          return 'Hardcore'
+        }
+      },
+    }
+  });
+
   constructor() {
     this.keyStats = this.getKeyStats();
     this.signatures = this.getSignatures(this.keyStats);
@@ -45,22 +108,24 @@ export class AppComponent {
         return song.style === style.name;
       }));
       return style;
-    });/*
-    this.styleDiversities.unshift({
-      name: 'All Styles',
-      series: this.getDiversities(songs.songs)
-    });*/
+    });
+    /*
+     this.styleDiversities.unshift({
+     name: 'All Styles',
+     series: this.getDiversities(songs.songs)
+     });*/
     this.styleDensities = this.getStyles().map((style) => {
       style.series = this.getDensities(songs.songs.filter((song) => {
         return song.style === style.name;
       }));
       //TODO min max
       return style;
-    });/*
-    this.styleDensities.unshift({
-      name: 'All Styles',
-      series: this.getDensities(songs.songs)
-    });*/
+    });
+    /*
+     this.styleDensities.unshift({
+     name: 'All Styles',
+     series: this.getDensities(songs.songs)
+     });*/
   }
 
   getKeyStats() {

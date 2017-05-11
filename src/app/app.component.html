@@ -3,8 +3,18 @@
 </h1>
 <p>This App analyzes the Leadsheets of 1300 Jazz Standards and finds out patterns.</p>
 
+<ec-list [list]="songs" [config]="{size:5,disableSelection:true}"></ec-list>
+
 <div data-row>
   <div data-col>
+    <div data-col>
+      <h2>Most used Styles</h2>
+      <ngx-charts-tree-map
+          [view]="small"
+          [scheme]="colorScheme"
+          [results]="styles"></ngx-charts-tree-map>
+
+    </div>
     <h2>Most used Keys</h2>
     <ngx-charts-tree-map
         [view]="small"
@@ -26,14 +36,6 @@
         [view]="small"
         [scheme]="colorScheme"
         [results]="chords"></ngx-charts-tree-map>
-
-  </div>
-  <div data-col>
-    <h2>Most used Styles</h2>
-    <ngx-charts-tree-map
-        [view]="small"
-        [scheme]="colorScheme"
-        [results]="styles"></ngx-charts-tree-map>
 
   </div>
   <div data-col>
@@ -101,7 +103,7 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="'Number of Different Chords'"
-        [yAxisLabel]="'Number of Songs'"
+        [yAxisLabel]="'%'"
         (select)="showSongs($event)">
     </ngx-charts-area-chart-normalized>
   </div>
@@ -118,7 +120,7 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="'Chords per Measure'"
-        [yAxisLabel]="'Number of Songs'"
+        [yAxisLabel]="'%'"
         (select)="showSongs($event)">
     </ngx-charts-area-chart-normalized>
   </div>
